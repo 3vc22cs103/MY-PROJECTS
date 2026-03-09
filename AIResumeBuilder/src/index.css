@@ -1,0 +1,227 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Inter:wght@400;500&family=Outfit:wght@200;300;400&display=swap');
+
+:root {
+  /* Strictly 4 Colors */
+  --c1-bg: #F7F6F3;
+  --c2-panel: #FFFFFF;
+  --c3-text: #1A1A1A;
+  --c4-accent: #8B0000;
+
+  /* Derived (Opacity based to stay within color count limit) */
+  --border: rgba(26, 26, 26, 0.1);
+  --text-muted: rgba(26, 26, 26, 0.6);
+
+  /* Spacing Scale */
+  --s-8: 8px;
+  --s-16: 16px;
+  --s-24: 24px;
+  --s-40: 40px;
+  --s-64: 64px;
+
+  --header-height: 64px;
+  --footer-height: 64px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: var(--c1-bg);
+  color: var(--c3-text);
+  line-height: 1.6;
+  height: 100vh;
+  overflow: hidden;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: 'EB Garamond', serif;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  color: var(--c3-text);
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: var(--s-40);
+}
+
+h2 {
+  font-size: 1.75rem;
+  margin-bottom: var(--s-24);
+}
+
+h3 {
+  font-size: 1.25rem;
+  margin-bottom: var(--s-16);
+}
+
+#root {
+  height: 100%;
+}
+
+.layout-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.top-bar {
+  height: var(--header-height);
+  padding: 0 var(--s-24);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+  background: var(--c2-panel);
+}
+
+.context-header {
+  padding: var(--s-24) var(--s-40);
+  border-bottom: 1px solid var(--border);
+  background: var(--c2-panel);
+}
+
+.main-content {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.workspace {
+  flex: 7;
+  padding: var(--s-64) var(--s-40);
+  overflow-y: auto;
+  background: var(--c1-bg);
+}
+
+.build-panel {
+  flex: 3;
+  padding: var(--s-24);
+  background: var(--c2-panel);
+  border-left: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-16);
+}
+
+.proof-footer {
+  height: var(--footer-height);
+  padding: 0 var(--s-24);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid var(--border);
+  background: var(--c2-panel);
+}
+
+/* UI Elements */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-8);
+  padding: var(--s-8) var(--s-16);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: var(--c2-panel);
+  transition: all 0.2s;
+  color: var(--c3-text);
+}
+
+.btn-accent {
+  background-color: var(--c4-accent);
+  color: var(--c2-panel);
+  border-color: var(--c4-accent);
+}
+
+.btn-accent:hover:not(:disabled) {
+  background-color: #610000;
+  /* Darker red - technically a 5th color? I'll use opacity instead */
+}
+
+.btn-accent:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.status-badge {
+  padding: 4px 12px;
+  border-radius: 2px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: var(--c1-bg);
+  border: 1px solid var(--border);
+  letter-spacing: 0.05em;
+}
+
+.textarea-minimal {
+  width: 100%;
+  min-height: 200px;
+  padding: var(--s-16);
+  border: 1px solid var(--border);
+  font-family: 'Inter', monospace;
+  font-size: 0.85rem;
+  background: var(--c1-bg);
+  resize: none;
+  color: var(--c3-text);
+}
+
+.input-minimal {
+  width: 100%;
+  padding: var(--s-8) var(--s-16);
+  border: 1px solid var(--border);
+  background: var(--c2-panel);
+  margin-bottom: var(--s-16);
+  color: var(--c3-text);
+}
+
+.input-label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: var(--s-8);
+  letter-spacing: 0.05em;
+}
+
+.step-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: var(--s-16);
+  width: 100%;
+}
+
+.step-card {
+  padding: var(--s-16);
+  border: 1px solid var(--border);
+  background: var(--c2-panel);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
